@@ -32,5 +32,5 @@ def test_register_first_name_error():
         user_register.register(first_name=first_name, last_name=last_name, age=age)
         assert False
     except Exception as exeption:
-        assert str(exeption) == 'Nome inválido para a busca'
+        assert str(exeption) == 'Nome inválido para o cadastro'
     
