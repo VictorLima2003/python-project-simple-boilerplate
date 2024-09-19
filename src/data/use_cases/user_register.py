@@ -1,6 +1,7 @@
 from typing import Dict
 from src.domain.use_cases.user_register import UserRegister as UserRegisterInterface
 from src.data.interfaces.users_repository import UsersRepositoryInterface
+from src.errors.types import  HttpBadRequestError
 
 class UserRagister(UserRegisterInterface):
     def __init__(self, user_repository: UsersRepositoryInterface) -> None:
@@ -17,10 +18,10 @@ class UserRagister(UserRegisterInterface):
     @classmethod
     def __validade_name(cls, first_name: str) -> None:
         if not first_name.isalpha():
-            raise Exception('Nome inválido para a busca')
+            raise HttpBadRequestError('Nome inválido para o cadastro')
         
         if len(first_name) > 18:
-            raise Exception('Nome muito grande para a busca')
+            raise HttpBadRequestError('Nome muito grande para o cadastro')
         
     def __registry_users_information(self, first_name: str, last_name: str, age: int) -> None:
         self.__user_repository.insert_user(first_name=first_name, last_name=last_name, age=age)

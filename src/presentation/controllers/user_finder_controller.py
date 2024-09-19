@@ -12,6 +12,8 @@ class UserFinderController(ControllerInterface):
 
         response = self.__use_case.find(first_name)
 
+        print(response)
+
         return HttpResponse(
             status_code=200,
             body={ "data": response }
